@@ -1,0 +1,88 @@
+@mixin singleBorder1px($property, $px, $style, $color) {
+  position: relative;
+  border: none;
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    #{$property}: #{$px} #{$style} #{$color};
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transform-origin: left top;
+    transform-origin: left top;
+  }
+  @media (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5) {
+    &::after {
+      -webkit-transform: scaleY(0.7);
+      transform: scaleY(0.7);
+    }
+  }
+
+  @media (-webkit-min-device-pixel-ratio: 2), (min-device-pixel-ratio: 2) {
+    &::after {
+      -webkit-transform: scaleY(0.5);
+      transform: scaleY(0.5);
+    }
+  }
+
+  @media (-webkit-min-device-pixel-ratio: 3), (min-device-pixel-ratio: 3) {
+    &::after {
+      -webkit-transform: scaleY(0.33);
+      transform: scaleY(0.33);
+    }
+  }
+}
+/* Use example */
+/* @import 'path/mobile_1px_border.scss'; */
+.box {
+  @include singleBorder1px(border-tottom, 1px, solid, #333);
+}
+
+
+@mixin fullBorder1px($px, $style, $color) {
+  position: relative;
+  border: none;
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: #{$px} #{$style} #{$color};
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transform-origin: left top;
+    transform-origin: left top;
+  }
+  @media (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5) {
+    &::after {
+      width: 150%;
+      height: 150%;
+      -webkit-transform: scale(0.7);
+      transform: scale(0.7);
+    }
+  }
+
+  @media (-webkit-min-device-pixel-ratio: 2), (min-device-pixel-ratio: 2) {
+    &::after {
+      width: 200%;
+      height: 200%;
+      -webkit-transform: scale(0.5);
+      transform: scale(0.5);
+    }
+  }
+
+  @media (-webkit-min-device-pixel-ratio: 3), (min-device-pixel-ratio: 3) {
+    &::after {
+      width: 300%;
+      height: 300%;
+      -webkit-transform: scale(0.33);
+      transform: scale(0.33);
+    }
+  }
+}
+/* Use example */
+/* @import 'path/mobile_1px_border.scss'; */
+.box {
+  @include fullBorder1px(1px, solid, #333);
+}

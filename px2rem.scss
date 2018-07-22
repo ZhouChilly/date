@@ -1,0 +1,35 @@
+/* 使用function 缺点是不支持多属性 */
+$browser-default-font-size: 16px !default;
+@function px2rem($px) {
+  @return ($px / $browser-default-font-size) + rem;
+}
+/* Use example */
+/* @import 'path/px2rem.scss'; */
+.wrapper {
+  width: px2rem(90px);
+  height: px2rem(90px);
+}
+
+/* 使用mixin */
+$browser-default-font-size: 16px !default;
+@mixin px2rem($property, $values...) {
+  $pxValues: '';
+  $remValues: '';
+
+  $baseFontSize: $browser-default-font-size / ($browser-default-font-size * 0 + 1);
+  @each $value in $values {
+    $pxValues: #{$pxValues + ' ' + $value}px;
+    $remValues: #{$remValues + ' ' + $value / $baseFontSize}rem;
+  }
+
+  #{$property}: $pxValues;
+  #{$property}: $remValues;
+}
+
+/* Use example */
+/* @import 'path/px2rem.scss'; */
+.wrapper {
+  @include px2rem(width, 45);
+  @include px2rem(height, 45);
+  @include px2rem(margin, 45, 30);
+}
