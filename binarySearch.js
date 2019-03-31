@@ -7,7 +7,7 @@ function binarySearch(target, arr, start, end) {
 		var pivotValue = arr[pivotIndex];
 		if (target === pivotValue) {
 			return pivotIndex
-		} else if (target <= pivotValue) {
+		} else if (target < pivotValue) {
 			return binarySearch(target, arr, start, pivotIndex - 1)
 		} else {
 			return binarySearch(target, arr, pivotIndex + 1, end)

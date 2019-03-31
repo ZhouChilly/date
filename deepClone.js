@@ -17,12 +17,8 @@ b = JSON.parse(JSON.stringify(a))
 
 
 // 3 jquery.extend  merage b into a
-$.extend(ture, a, b) //deep
-$.extend(a, b) //shallow
+$.extend(true,a,b)  //deep
+$.extend(a,b)  //shallow
 
 // 4 Object.assign() 无引用对象（深复制），有引用对象（浅复制）
-Object.assign({}, {
-  'a': 1
-}, {
-  'b': 2
-})
+Object.assign({}, {'a': 1}, {'b': 2})
